@@ -1,0 +1,8 @@
+{
+   "type" : "record",
+   "namespace" : "net.zylklab.avro.tensorflow",
+   "name" : "Image",
+   "fields" : [
+      { "name" : "content" , "type" : "bytes" }
+   ]
+}

@@ -1,0 +1,2 @@
+net.zylklab.nifi.protobuffer.tfrecord.TFRecordSetWriter
+net.zylklab.nifi.protobuffer.tfrecord.ImageReader
