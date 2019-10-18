@@ -49,7 +49,7 @@ message Feature {
   }
 };
 message Features {
-  map<string, Feature> feature = 1;
+  map<string, Feature> feature = 1;FileLookupService
 };
 message FeatureList {
   repeated Feature feature = 1;
@@ -122,4 +122,7 @@ A NiFi template to test an example based on [flowers](https://storage.googleapis
 ## Image Reader
 
 A RecordReader that read the content of a image and write as record with a default schema with a unique field content of type Byte[] (avro bytes)
- 
+
+## FileLookupService
+
+A FileRecordLookupService that reads the content of a file and add as a byte[] field to the original record

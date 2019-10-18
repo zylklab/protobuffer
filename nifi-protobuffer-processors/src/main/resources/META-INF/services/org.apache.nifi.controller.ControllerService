@@ -1,2 +1,3 @@
 net.zylklab.nifi.protobuffer.tfrecord.TFRecordSetWriter
 net.zylklab.nifi.protobuffer.tfrecord.ImageReader
+net.zylklab.nifi.protobuffer.lookup.FileLookupService
