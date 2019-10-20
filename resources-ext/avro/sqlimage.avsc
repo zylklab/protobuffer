@@ -1,0 +1,26 @@
+{
+ "type":"record",
+ "name":"SqlImage",
+ "namespace":"net.zylklab.tensorflow",
+ "fields":[
+           {"name":"id","type":"int"},
+           {"name":"text","type":"string"},
+           {"name":"label","type":"int"},
+           {"name":"fileName","type":"string"},
+           {"name":"content","type":["null","bytes"]}
+          ]
+}
+
+
+{
+ "type":"record",
+ "name":"SqlImageNifi",
+ "namespace":"net.zylklab.tensorflow",
+ "fields":[
+           {"name":"id","type":"int"},
+           {"name":"text","type":"string"},
+           {"name":"label","type":"int"},
+           {"name":"fileName","type":"string"},
+           {"name":"content","type":"bytes"}
+          ]
+}

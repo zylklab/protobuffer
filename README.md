@@ -126,3 +126,16 @@ A RecordReader that read the content of a image and write as record with a defau
 ## FileLookupService
 
 A FileRecordLookupService that reads the content of a file and add as a byte[] field to the original record
+
+
+## NiFi Templates/Exmaples
+
+### Read a set of images and create TFRecord
+The text is extracted from the path of the image, and the lable (int) is mapped from a updata attribute processor, the content is read from the image as flowfile content
+
+### Create a TFRecord from SQL query
+The TFrecord is created from the fields of the SQL result.
+
+### Create a TFRecord from SQL query and enrich with image as byte[]
+The TFrecord is created from the fields of the SQL result and with FileLookupRecord the TFRecord is enriched with the content of the image, read from the filesystem.
+ 
