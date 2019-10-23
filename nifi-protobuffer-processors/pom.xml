@@ -104,7 +104,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
@@ -130,7 +129,6 @@
 			</exclusions>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
@@ -146,34 +144,5 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.github.os72</groupId>
-				<artifactId>protoc-jar-maven-plugin</artifactId>
-				<version>3.8.0</version>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<!-- <includeDirectories> <include>src/main/protobuf</include> </includeDirectories> -->
-							<inputDirectories>
-								<include>src/main/protobuf</include>
-							</inputDirectories>
-							<!-- Create java files. And put them in the src/main/java directory. -->
-							<outputTargets>
-								<outputTarget>
-									<type>java</type>
-									<outputDirectory>src/main/java</outputDirectory>
-								</outputTarget>
-							</outputTargets>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+
 </project>
