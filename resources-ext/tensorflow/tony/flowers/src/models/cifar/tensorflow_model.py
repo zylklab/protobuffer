@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def cnn_model():
+def _cnn_model():
     input_layer = tf.keras.layers.Input(shape=(32, 32, 3))
     use_bias = False
 
@@ -45,8 +45,12 @@ def cnn_model():
     m = tf.keras.Model(inputs=input_layer, outputs=output)
     return m
 
-def build_estimator(model, model_dir):
-    model = cnn_model()
+def build_estimator(model_dir, work_config):
+    model = _cnn_model()
     model.compile(optimizer=tf.keras.optimizers.Adam(),loss=tf.keras.losses.categorical_crossentropy,metrics=['accuracy'])
-    cifar_est = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir)
+    print(work_config)
+    if(work_config is None):
+        cifar_est = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir)
+    else:
+        cifar_est = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir, config=work_config)
     return cifar_est

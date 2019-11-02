@@ -1,4 +1,10 @@
 # Directories #
+__pycache__/
+__pycache__
+**/__pycache__/
+kkt
+kkt/
+**/kkt/
 /build/
 /bin/
 **/bin/
