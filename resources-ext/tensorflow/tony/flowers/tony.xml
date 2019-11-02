@@ -1,0 +1,30 @@
+<configuration>
+  <property>
+    <name>tony.worker.instances</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>tony.worker.memory</name>
+    <value>1g</value>
+  </property>
+  <property>
+    <name>tony.ps.instances</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>tony.application.security.enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>tony.history.location</name>
+    <value>/apps/tony/tony-history</value>
+  </property>
+  <property>
+    <name>tony.history.intermediate</name>
+    <value>/apps/tony/tony-history/intermediate</value>
+  </property>
+  <property>
+    <name>tony.history.finished</name>
+    <value>/apps/tony/tony-history/finished</value>
+  </property>
+</configuration>
