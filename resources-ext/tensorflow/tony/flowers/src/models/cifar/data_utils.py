@@ -15,8 +15,8 @@ def dataset_input_fn(filenames, num_epochs, image_size):
 
         example = tf.parse_single_example(record, featdef)
         im = tf.decode_raw(example['image'], tf.float32)
-        im = tf.reshape(im, (32, 32, 3))
-        #im = tf.reshape(im, (image_size, image_size, 3))
+        #im = tf.reshape(im, (32, 32, 3))
+        im = tf.reshape(im, (image_size, image_size, 3))
         lbl = tf.decode_raw(example['labels'], tf.float32)
         return im, lbl
 

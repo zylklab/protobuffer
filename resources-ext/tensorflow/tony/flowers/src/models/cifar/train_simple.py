@@ -20,12 +20,16 @@ class_maping = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", 
 # Environment variable containing port to launch TensorBoard on, set by TonY.
 # based on https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/
 TB_PORT_ENV_VAR = 'TB_PORT'
-tf.flags.DEFINE_string('tfrecord_path'      , '/home/gus/Descargas/cifar/tfrecords', 'The base path where the tfrecords are stored, hdfs://namenode is valid protocol')
-tf.flags.DEFINE_string('tftraining_file'    , 'train.tfrecords', 'The filename with the training data is stored as tfrecods')
-tf.flags.DEFINE_string('tftesting_file'     , 'test.tfrecords', 'The filename with the test data is stored as tfrecods')
-tf.flags.DEFINE_string('estimator_path'     , 'kkt', 'The working path used by the estimator to process the data')
-tf.flags.DEFINE_string('export_model_path'  , './export', 'The path where the model is exported as .pb file')
-tf.flags.DEFINE_boolean('plot_enabled'  , False, 'If we want to plot the accuracy of the model, only for local training')
+tf.flags.DEFINE_string('tfrecord_path'      , '/home/gus/Descargas/cifar/tfrecords' , 'The base path where the tfrecords are stored, hdfs://namenode is valid protocol')
+tf.flags.DEFINE_string('tftraining_file'    , 'train.tfrecords'                     , 'The filename with the training data is stored as tfrecods')
+tf.flags.DEFINE_string('tftesting_file'     , 'test.tfrecords'                      , 'The filename with the test data is stored as tfrecods')
+tf.flags.DEFINE_string('estimator_path'     , 'kkt'                                 , 'The working path used by the estimator to process the data')
+tf.flags.DEFINE_string('export_model_path'  , './export'                            , 'The path where the model is exported as .pb file')
+tf.flags.DEFINE_string('export_model_name'  , 'kkk.pb'                              , 'The name used to save the exported .pb file')
+tf.flags.DEFINE_boolean('plot_enabled'      , False                                 , 'If we want to plot the accuracy of the model, only for local training')
+tf.flags.DEFINE_integer('image_size'        , 32                                    , 'The image size, to create the matrix of integers that represent the image')
+tf.flags.DEFINE_integer('train_max_steps'   , 100                                   , 'The max number of steps at training phase')
+
 #tf.flags.DEFINE_integer("batch_size", 64, "The batch size per step.")
 FLAGS = tf.flags.FLAGS
 
@@ -66,7 +70,7 @@ def predict_input_fn(image_path):
     image = iterator.get_next()
     return image
 
-def serving_input_receiver_fn():
+def serving_input_receiver_fn(model_input_name):
     input_ph = tf.placeholder(tf.string, shape=[None], name='image_binary')
     images = tf.map_fn(partial(tf.image.decode_image, channels=1), input_ph, dtype=tf.uint8)
     images = tf.cast(images, tf.float32) / 255.
@@ -78,26 +82,51 @@ def train_and_evaluate():
     tftraining_file = FLAGS.tftraining_file #"train.tfrecords"
     tftesting_file = FLAGS.tftesting_file #"test.tfrecords"
     estimator_path = FLAGS.estimator_path #"kkt"
-    export_model_path = FLAGS.export_model_path #"./export"
-    plot_enabeld = FLAGS.plot_enabeld #False
+    image_size = FLAGS.image_size
+    export_model_path= FLAGS.export_model_path
+    export_model_name = FLAGS.export_model_name
+    plot_enabled = FLAGS.plot_enabled
+    train_max_steps = FLAGS.train_max_steps
     
     train_data = os.path.join(tfrecord_path, tftraining_file)
     test_data = os.path.join(tfrecord_path, tftesting_file)
-#     model = tensorflow_model.cnn_model()
-#     model.compile(optimizer=tf.keras.optimizers.Adam(),loss=tf.keras.losses.categorical_crossentropy,metrics=['accuracy'])
-#     cifar_est = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir="kkt")
-    cifar_est = tensorflow_model.build_estimator(tensorflow_model.cnn_model(),estimator_path)
+#    get_distribution_strategy()
+    hook = tf.train.ProfilerHook(save_steps=100,output_dir=estimator_path,show_memory=True)
     
-    train_input = lambda: data_utils.dataset_input_fn(train_data, None)
-    cifar_est.train(input_fn=train_input, steps=7000)
+    run_config = None
+    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config)
+    train_input = lambda: data_utils.dataset_input_fn(train_data, None, image_size)
+#    train = cifar_est.train(input_fn=train_input, steps=7000)
+    train_spec = tf.estimator.TrainSpec(
+                    input_fn=train_input,
+                    # hooks=[hook], # Uncomment if needed to debug.
+                    max_steps=train_max_steps)
     
-    test_input = lambda: data_utils.dataset_input_fn(test_data, 1)
-    res = cifar_est.evaluate(input_fn=test_input, steps=1)
-    print(res)
+    
+    
+    #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
+    
+    test_input = lambda: data_utils.dataset_input_fn(test_data, 1, image_size)
+#    res = cifar_est.evaluate(input_fn=test_input, steps=1)
+    #logging.info(str(res))
+    test_spec = tf.estimator.EvalSpec(
+                    input_fn=test_input,
+                    steps=1,
+                    name='mnist-eval',
+                    #exporters=[exporter],
+                    start_delay_secs=10,
+                    throttle_secs=10)
+    
+    tf.gfile.MakeDirs(estimator_path)
+    #start_tensorboard(estimator_path)
+    
+    tf.estimator.train_and_evaluate(cifar_est, train_spec, test_spec)
+    
+    logging.info("Model export name: "+str(export_model_name))
     model_input_name = model.input_names[0]
-    export_path = cifar_est.export_savedmodel(export_model_path, serving_input_receiver_fn=serving_input_receiver_fn)
-    predict_image, true_label = prediction_data()
-    predict_result = list(cifar_est.predict(input_fn=lambda: predict_input_fn(predict_image)))
+    serving_input_receiver_fn_lambda = lambda: serving_input_receiver_fn(model_input_name)
+    cifar_est.export_savedmodel(export_model_path, serving_input_receiver_fn=serving_input_receiver_fn_lambda)
+    logging.info("Model export path: "+str(export_model_path))
     
     if(plot_enabled):
         pos = 1

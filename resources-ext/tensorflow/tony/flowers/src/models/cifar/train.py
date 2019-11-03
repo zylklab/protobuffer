@@ -32,7 +32,9 @@ tf.flags.DEFINE_string('tftesting_file'     , 'test.tfrecords', 'The filename wi
 tf.flags.DEFINE_string('estimator_path'     , 'kkt', 'The working path used by the estimator to process the data')
 tf.flags.DEFINE_string('export_model_path'  , './export', 'The path where the model is exported as .pb file')
 tf.flags.DEFINE_string('export_model_name'  , 'kkk.pb', 'The name used to save the exported .pb file')
+tf.flags.DEFINE_boolean('plot_enabled'  , False, 'If we want to plot the accuracy of the model, only for local training')
 tf.flags.DEFINE_integer('image_size'  , 32, 'The image size, to create the matrix of integers that represent the image')
+tf.flags.DEFINE_integer('train_max_steps'  , 100, 'The max number of steps at training phase')
 
 #tf.flags.DEFINE_integer("batch_size", 64, "The batch size per step.")
 FLAGS = tf.flags.FLAGS
@@ -129,7 +131,10 @@ def train_and_evaluate():
     tftesting_file = FLAGS.tftesting_file #"test.tfrecords"
     estimator_path = FLAGS.estimator_path #"kkt"
     image_size = FLAGS.image_size
-    model_input_name = FLAGS.export_model_path+"/"+FLAGS.export_model_name
+    export_model_path= FLAGS.export_model_path
+    export_model_name = FLAGS.export_model_name
+    plot_enabled = FLAGS.plot_enabled
+    train_max_steps = FLAGS.train_max_steps
     
     train_data = os.path.join(tfrecord_path, tftraining_file)
     test_data = os.path.join(tfrecord_path, tftesting_file)
@@ -144,14 +149,14 @@ def train_and_evaluate():
                     log_step_count_steps=100,
                     save_checkpoints_steps=500)
 
-    cifar_est = tensorflow_model.build_estimator(estimator_path, run_config)
+    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config)
     
     train_input = lambda: data_utils.dataset_input_fn(train_data, None, image_size)
 #    train = cifar_est.train(input_fn=train_input, steps=7000)
     train_spec = tf.estimator.TrainSpec(
                     input_fn=train_input,
                     # hooks=[hook], # Uncomment if needed to debug.
-                    max_steps=7000)
+                    max_steps=train_max_steps)
     
     
     
@@ -173,9 +178,11 @@ def train_and_evaluate():
     
     tf.estimator.train_and_evaluate(cifar_est, train_spec, test_spec)
     
-    logging.info("Model input name: "+str(model_input_name))
-    cifar_est.export_savedmodel(model_input_name, serving_input_receiver_fn=serving_input_receiver_fn)
-    logging.info("Model export path: "+str(export_path))
+    logging.info("Model export name: "+str(export_model_name))
+    model_input_name = model.input_names[0]
+    serving_input_receiver_fn_lambda = lambda: serving_input_receiver_fn(model_input_name)
+    cifar_est.export_savedmodel(export_model_path, serving_input_receiver_fn=serving_input_receiver_fn_lambda)
+    logging.info("Model export path: "+str(export_model_path))
     #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
     
     
