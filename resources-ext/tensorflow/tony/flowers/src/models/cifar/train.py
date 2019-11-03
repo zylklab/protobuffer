@@ -76,7 +76,7 @@ def predict_input_fn(image_path):
     image = iterator.get_next()
     return image
 
-def serving_input_receiver_fn():
+def serving_input_receiver_fn(model_input_name):
     input_ph = tf.placeholder(tf.string, shape=[None], name='image_binary')
     images = tf.map_fn(partial(tf.image.decode_image, channels=1), input_ph, dtype=tf.uint8)
     images = tf.cast(images, tf.float32) / 255.
