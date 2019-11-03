@@ -16,7 +16,7 @@ export CLASSPATH=${TONY_CLASSPATH}
 
 echo "Starting the process ..."
 #TASK_PARAMS="--tfrecord_path hdfs://amaterasu001.bigdata.zylk.net_8020/apps/tony/data/cifar -tftraining_file train.tfrecords --tftesting_file test.tfrecords --estimator_path kkt --export_model_path ./export --plot_enabled False"
-TASK_PARAMS="--tfrecord_path hdfs://amaterasu001.bigdata.zylk.net:8020/apps/tony/data/cifar"
+TASK_PARAMS="--tfrecord_path hdfs://amaterasu001.bigdata.zylk.net:8020/apps/tony/data/cifar --estimator_path hdfs://amaterasu001.bigdata.zylk.net:8020/tmp/kkt --export_model_path hdfs://amaterasu001.bigdata.zylk.net:8020/tmp/export"
 EXECUTE_PY_FILE="./models/cifar/train.py"
 #ENV_ZIP_FILE="tensorflow1131-centos7.zip"
 PYTHON_BIN="tensorflow1131-centos7/bin/python"

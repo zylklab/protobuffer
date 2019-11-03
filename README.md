@@ -139,3 +139,49 @@ The TFrecord is created from the fields of the SQL result.
 ### Create a TFRecord from SQL query and enrich with image as byte[]
 The TFrecord is created from the fields of the SQL result and with FileLookupRecord the TFRecord is enriched with the content of the image, read from the filesystem.
  
+ 
+## Tensorflow examples
+Based on this article [Train Keras model with TensorFlow Estimators and Datasets API](https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/) is posible to train a CNN using TFRecords stored at HDFS, and is posible to use HDFS as filesystem. There are two examples at this project, one standalone and one to use with [LinkedIn TonY project](https://github.com/linkedin/TonY/)
+
+### Standalone keras model
+The **train_simple.py** file is a python script based on the article [Train Keras model with TensorFlow Estimators and Datasets API](https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/) modified to read and write data from/to hdfs. The Tfrecords are previuslay created from nifi flow and stored at HDFS. The params to launch the training are
+
+ |Param|Value|Type|
+ |------|----------|----|
+ |CLASSPATH|hadoop classpath --glob|Environment Variable|
+ |JAVA_HOME|/usr/lib/jvm/java-8-oracle|Environment Variable|
+ |HADOOP_COMMON_LIB_NATIVE_DIR|/HADOOP_HOME/lib/native|Environment Variable|
+ |HADOOP_HDFS_HOME|HADOOP_HOME|Environment Variable|
+ |LD_LIBRARY_PATH|${JAVA_HOME}/jre/lib/amd64/server:${HADOOP_COMMON_LIB_NATIVE_DIR}:${LD_LIBRARY_PATH}|Environment Variable|
+ |HADOOP_OPTS|-Djava.library.path=${LD_LIBRARY_PATH} -Dhadoop.security.authentication=kerberos|Environment Variable|
+ |--tfrecord_path|hdfs://namenode:8020/apps/tony/data/cifar|Program param|
+ |--estimator_path|hdfs://namenode:8020/tmp/kkt|Program param|
+ |--export_model_path|hdfs://namenode:8020/tmp/export|Program param|
+ 
+
+### Distributed keras model
+ 
+The **train.py** file is a python script based on the article [Train Keras model with TensorFlow Estimators and Datasets API](https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/) modified to read and write data from/to hdfs and to use in conjuntion with tony.xml and launcher.sh shell script.
+
+```bash
+#!/bin/bash
+cd /home/zylk/tony
+export TONY_CLASSPATH=`hadoop classpath --glob`
+export TONY_CLASSPATH=$TONY_CLASSPATH:flowers:flowers/*:flowers/dist:flowers/dist/*
+export HADOOP_COMMON_LIB_NATIVE_DIR=/usr/hdp/3.1.0.0-78/hadoop-hdfs/lib/native
+export HADOOP_HDFS_HOME=/usr/hdp/3.1.0.0-78/hadoop-hdfs
+export JAVA_HOME=/usr/java/default/
+export KRB5CCNAME=/tmp/krb5cc_1000
+export LD_LIBRARY_PATH=${JAVA_HOME}/jre/lib/amd64/server:${HADOOP_COMMON_LIB_NATIVE_DIR}:${LD_LIBRARY_PATH}
+export HADOOP_OPTS="-Djava.library.path=${LD_LIBRARY_PATH} -Dhadoop.security.authentication=kerberos"
+export CLASSPATH=${TONY_CLASSPATH}
+
+echo "Starting the process ..."
+TASK_PARAMS="--tfrecord_path hdfs://amaterasu001.bigdata.zylk.net:8020/apps/tony/data/cifar --estimator_path hdfs://amaterasu001.bigdata.zylk.net:8020/tmp/kkt --export_model_path hdfs://amaterasu001.bigdata.zylk.net:8020/tmp/export"
+EXECUTE_PY_FILE="./models/cifar/train.py"
+PYTHON_BIN="tensorflow1131-centos7/bin/python"
+ENV_ZIP_FILE="venv.zip"
+PYTHON_BIN="venv/bin/python"
+```
+
+Is tested with HDP 3.1 cluster
