@@ -27,6 +27,7 @@
     <name>tony.history.finished</name>
     <value>/apps/tony/tony-history/finished</value>
   </property>
+  <!-- 
   <property>
     <name>tony.chief.instances</name>
     <value>1</value>
@@ -35,4 +36,5 @@
     <name>tony.chief.memory</name>
     <value>1g</value>
   </property>
+   -->
 </configuration>

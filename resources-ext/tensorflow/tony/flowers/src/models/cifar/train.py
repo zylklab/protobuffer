@@ -166,6 +166,17 @@ def train_and_evaluate():
     
     #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
     
+    logging.info("Model export name: "+str(export_model_name))
+    model_input_name = model.input_names[0]
+    serving_input_receiver_fn_lambda = lambda: serving_input_receiver_fn(model_input_name)
+    #cifar_est.export_savedmodel(export_model_path, serving_input_receiver_fn=serving_input_receiver_fn_lambda)
+    #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
+    exporter = tf.estimator.FinalExporter('exporter', serving_input_receiver_fn_lambda)
+    logging.info("Model export path: "+str(export_model_path))
+    
+    
+    
+    
     #test_input = lambda: data_utils.dataset_input_fn(test_data, 1, image_size)
     test_input = lambda: data_utils.dataset_input_fn_distributed(train_data, None, image_size)
 #    res = cifar_est.evaluate(input_fn=test_input, steps=1)
@@ -174,21 +185,16 @@ def train_and_evaluate():
                     input_fn=test_input,
                     steps=1,
                     name='mnist-eval',
-                    #exporters=[exporter],
+                    exporters=[exporter],
                     start_delay_secs=10,
                     throttle_secs=10)
     
     tf.gfile.MakeDirs(estimator_path)
-    #start_tensorboard(estimator_path)
+    start_tensorboard(estimator_path)
     
     tf.estimator.train_and_evaluate(cifar_est, train_spec, test_spec)
     
-    logging.info("Model export name: "+str(export_model_name))
-    model_input_name = model.input_names[0]
-    serving_input_receiver_fn_lambda = lambda: serving_input_receiver_fn(model_input_name)
-    cifar_est.export_savedmodel(export_model_path, serving_input_receiver_fn=serving_input_receiver_fn_lambda)
-    logging.info("Model export path: "+str(export_model_path))
-    #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
+    
     
     
     
