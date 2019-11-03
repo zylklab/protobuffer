@@ -45,9 +45,9 @@ def _cnn_model():
     m = tf.keras.Model(inputs=input_layer, outputs=output)
     return m
 
-def build_estimator_and_model(model_dir, work_config):
+def build_estimator_and_model(model_dir, work_config, optimizer, loss):
     model = _cnn_model()
-    model.compile(optimizer=tf.keras.optimizers.Adam(),loss=tf.keras.losses.categorical_crossentropy,metrics=['accuracy'])
+    model.compile(optimizer=optimizer,loss=loss,metrics=['accuracy'])
     print(work_config)
     if(work_config is None):
         cifar_est = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir)

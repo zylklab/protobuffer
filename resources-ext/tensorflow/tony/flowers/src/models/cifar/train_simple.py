@@ -94,7 +94,7 @@ def train_and_evaluate():
     hook = tf.train.ProfilerHook(save_steps=100,output_dir=estimator_path,show_memory=True)
     
     run_config = None
-    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config)
+    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config, tf.keras.optimizers.Adam(), tf.keras.losses.categorical_crossentropy)
     train_input = lambda: data_utils.dataset_input_fn(train_data, None, image_size)
 #    train = cifar_est.train(input_fn=train_input, steps=7000)
     train_spec = tf.estimator.TrainSpec(

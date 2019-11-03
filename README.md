@@ -113,7 +113,7 @@ The mapper of the record field to TFRecord features follows this rules
 A NiFi template to test an example based on [flowers](https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz) dataset can be located at this location [**resources-ext/nifi/TFRecord-NiFi.xml**](resource-ext/nifi/TFRecord-NiFi.xml)  
 
 
-###TODO List
+### TODO List
 
  * Merge every data of a feature at the same list
  * Parse Arrays of data as feature list, not only single type of data
@@ -161,7 +161,7 @@ The **train_simple.py** file is a python script based on the article [Train Kera
 
 ### Distributed keras model
  
-The **train.py** file is a python script based on the article [Train Keras model with TensorFlow Estimators and Datasets API](https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/) modified to read and write data from/to hdfs and to use in conjuntion with tony.xml and launcher.sh shell script.
+The **train.py** file is a python script based on the article [Train Keras model with TensorFlow Estimators and Datasets API](https://androidkt.com/train-keras-model-with-tensorflow-estimators-and-datasets-api/) and the [tensorflow documentation about distribution strategy](https://github.com/tensorflow/tensorflow/blob/r1.12/tensorflow/contrib/distribute/README.md) modified to read and write data from/to hdfs and to use in conjuntion with tony.xml and launcher.sh shell script. This kind of error **Only TensorFlow native optimizers are supported with DistributionStrategy.** is realted with optimizers and loss functions more info about this is available at [tensworflow distributed_training documentantion](https://www.tensorflow.org/guide/distributed_training#using_tfdistributestrategy_with_keras). 
 
 ```bash
 #!/bin/bash

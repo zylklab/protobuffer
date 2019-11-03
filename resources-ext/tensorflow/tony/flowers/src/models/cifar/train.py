@@ -142,16 +142,20 @@ def train_and_evaluate():
     hook = tf.train.ProfilerHook(save_steps=100,output_dir=estimator_path,show_memory=True)
     
     run_config = tf.estimator.RunConfig(
-                    #experimental_distribute=tf.contrib.distribute.DistributeConfig(train_distribute=tf.contrib.distribute.ParameterServerStrategy(),eval_distribute=tf.contrib.distribute.MirroredStrategy()),
+                    experimental_distribute=tf.contrib.distribute.DistributeConfig(train_distribute=tf.contrib.distribute.ParameterServerStrategy(),eval_distribute=tf.contrib.distribute.MirroredStrategy()),
                     session_config=_get_session_config_from_env_var(),
                     model_dir=estimator_path,
                     save_summary_steps=100,
                     log_step_count_steps=100,
                     save_checkpoints_steps=500)
 
-    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config)
+    #cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config, tf.keras.optimizers.Adam(), tf.keras.losses.categorical_crossentropy)
+    cifar_est, model = tensorflow_model.build_estimator_and_model(estimator_path, run_config, optimizer=tf.train.AdamOptimizer(),loss='categorical_crossentropy')
     
-    train_input = lambda: data_utils.dataset_input_fn(train_data, None, image_size)
+    
+    #train_input = lambda: data_utils.dataset_input_fn(train_data, None, image_size)
+    train_input = lambda: data_utils.dataset_input_fn_distributed(train_data, None, image_size)
+    
 #    train = cifar_est.train(input_fn=train_input, steps=7000)
     train_spec = tf.estimator.TrainSpec(
                     input_fn=train_input,
@@ -162,7 +166,8 @@ def train_and_evaluate():
     
     #exporter = tf.estimator.FinalExporter('exporter', serving_input_fn)
     
-    test_input = lambda: data_utils.dataset_input_fn(test_data, 1, image_size)
+    #test_input = lambda: data_utils.dataset_input_fn(test_data, 1, image_size)
+    test_input = lambda: data_utils.dataset_input_fn_distributed(train_data, None, image_size)
 #    res = cifar_est.evaluate(input_fn=test_input, steps=1)
     #logging.info(str(res))
     test_spec = tf.estimator.EvalSpec(
