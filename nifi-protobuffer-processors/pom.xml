@@ -33,11 +33,6 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>lab.zylk.bigdata.zts</groupId>
-			<artifactId>zts-metadata</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.nifi</groupId>
 			<artifactId>nifi-api</artifactId>
 		</dependency>
@@ -90,6 +85,18 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>${hadoop.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.protobuf</groupId>
+					<artifactId>protobuf-java</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
 			<version>${hadoop.version}</version>
 			<exclusions>
 				<exclusion>
