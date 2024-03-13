@@ -77,7 +77,7 @@ public final class FeatureProtos {
       "\0132\025.tensorflow.Int64ListH\000B\006\n\004kind\"\203\001\n\010F" +
       "eatures\0222\n\007feature\030\001 \003(\0132!.tensorflow.Fe" +
       "atures.FeatureEntry\032C\n\014FeatureEntry\022\013\n\003k" +
-      "ey\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.tensorflow.Fea" +
+      "ey\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.tensorflow.Fea",
       "ture:\0028\001\"3\n\013FeatureList\022$\n\007feature\030\001 \003(\013" +
       "2\023.tensorflow.Feature\"\234\001\n\014FeatureLists\022?" +
       "\n\014feature_list\030\001 \003(\0132).tensorflow.Featur" +
@@ -88,10 +88,18 @@ public final class FeatureProtos {
       "orflow/tensorflow/tensorflow/go/core/exa" +
       "mple\370\001\001b\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
+    com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        });
+        }, assigner);
     internal_static_tensorflow_BytesList_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_tensorflow_BytesList_fieldAccessorTable = new

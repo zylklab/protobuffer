@@ -8,28 +8,28 @@ public interface SequenceExampleOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   boolean hasContext();
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   org.tensorflow.example.Features getContext();
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   org.tensorflow.example.FeaturesOrBuilder getContextOrBuilder();
 
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   boolean hasFeatureLists();
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   org.tensorflow.example.FeatureLists getFeatureLists();
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   org.tensorflow.example.FeatureListsOrBuilder getFeatureListsOrBuilder();
 }

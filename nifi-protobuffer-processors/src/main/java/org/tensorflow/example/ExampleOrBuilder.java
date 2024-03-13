@@ -8,15 +8,15 @@ public interface ExampleOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.tensorflow.Features features = 1;</code>
+   * <code>optional .tensorflow.Features features = 1;</code>
    */
   boolean hasFeatures();
   /**
-   * <code>.tensorflow.Features features = 1;</code>
+   * <code>optional .tensorflow.Features features = 1;</code>
    */
   org.tensorflow.example.Features getFeatures();
   /**
-   * <code>.tensorflow.Features features = 1;</code>
+   * <code>optional .tensorflow.Features features = 1;</code>
    */
   org.tensorflow.example.FeaturesOrBuilder getFeaturesOrBuilder();
 }

@@ -10,7 +10,6 @@ public  final class SequenceExample extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:tensorflow.SequenceExample)
     SequenceExampleOrBuilder {
-private static final long serialVersionUID = 0L;
   // Use SequenceExample.newBuilder() to construct.
   private SequenceExample(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -19,27 +18,16 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new SequenceExample();
-  }
-
-  @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return this.unknownFields;
+    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private SequenceExample(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -48,6 +36,12 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
+          default: {
+            if (!input.skipField(tag)) {
+              done = true;
+            }
+            break;
+          }
           case 10: {
             org.tensorflow.example.Features.Builder subBuilder = null;
             if (context_ != null) {
@@ -74,13 +68,6 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -89,7 +76,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -98,7 +84,6 @@ private static final long serialVersionUID = 0L;
     return org.tensorflow.example.ExampleProtos.internal_static_tensorflow_SequenceExample_descriptor;
   }
 
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return org.tensorflow.example.ExampleProtos.internal_static_tensorflow_SequenceExample_fieldAccessorTable
@@ -109,19 +94,19 @@ private static final long serialVersionUID = 0L;
   public static final int CONTEXT_FIELD_NUMBER = 1;
   private org.tensorflow.example.Features context_;
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   public boolean hasContext() {
     return context_ != null;
   }
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   public org.tensorflow.example.Features getContext() {
     return context_ == null ? org.tensorflow.example.Features.getDefaultInstance() : context_;
   }
   /**
-   * <code>.tensorflow.Features context = 1;</code>
+   * <code>optional .tensorflow.Features context = 1;</code>
    */
   public org.tensorflow.example.FeaturesOrBuilder getContextOrBuilder() {
     return getContext();
@@ -130,26 +115,25 @@ private static final long serialVersionUID = 0L;
   public static final int FEATURE_LISTS_FIELD_NUMBER = 2;
   private org.tensorflow.example.FeatureLists featureLists_;
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   public boolean hasFeatureLists() {
     return featureLists_ != null;
   }
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   public org.tensorflow.example.FeatureLists getFeatureLists() {
     return featureLists_ == null ? org.tensorflow.example.FeatureLists.getDefaultInstance() : featureLists_;
   }
   /**
-   * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+   * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
    */
   public org.tensorflow.example.FeatureListsOrBuilder getFeatureListsOrBuilder() {
     return getFeatureLists();
   }
 
   private byte memoizedIsInitialized = -1;
-  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -159,7 +143,6 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
-  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (context_ != null) {
@@ -168,10 +151,8 @@ private static final long serialVersionUID = 0L;
     if (featureLists_ != null) {
       output.writeMessage(2, getFeatureLists());
     }
-    unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -185,11 +166,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getFeatureLists());
     }
-    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
+  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -200,18 +181,18 @@ private static final long serialVersionUID = 0L;
     }
     org.tensorflow.example.SequenceExample other = (org.tensorflow.example.SequenceExample) obj;
 
-    if (hasContext() != other.hasContext()) return false;
+    boolean result = true;
+    result = result && (hasContext() == other.hasContext());
     if (hasContext()) {
-      if (!getContext()
-          .equals(other.getContext())) return false;
+      result = result && getContext()
+          .equals(other.getContext());
     }
-    if (hasFeatureLists() != other.hasFeatureLists()) return false;
+    result = result && (hasFeatureLists() == other.hasFeatureLists());
     if (hasFeatureLists()) {
-      if (!getFeatureLists()
-          .equals(other.getFeatureLists())) return false;
+      result = result && getFeatureLists()
+          .equals(other.getFeatureLists());
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return result;
   }
 
   @java.lang.Override
@@ -220,7 +201,7 @@ private static final long serialVersionUID = 0L;
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasContext()) {
       hash = (37 * hash) + CONTEXT_FIELD_NUMBER;
       hash = (53 * hash) + getContext().hashCode();
@@ -234,17 +215,6 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static org.tensorflow.example.SequenceExample parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static org.tensorflow.example.SequenceExample parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static org.tensorflow.example.SequenceExample parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -304,7 +274,6 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -312,7 +281,6 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder(org.tensorflow.example.SequenceExample prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -336,7 +304,6 @@ private static final long serialVersionUID = 0L;
       return org.tensorflow.example.ExampleProtos.internal_static_tensorflow_SequenceExample_descriptor;
     }
 
-    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.tensorflow.example.ExampleProtos.internal_static_tensorflow_SequenceExample_fieldAccessorTable
@@ -359,7 +326,6 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
       }
     }
-    @java.lang.Override
     public Builder clear() {
       super.clear();
       if (contextBuilder_ == null) {
@@ -377,18 +343,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return org.tensorflow.example.ExampleProtos.internal_static_tensorflow_SequenceExample_descriptor;
     }
 
-    @java.lang.Override
     public org.tensorflow.example.SequenceExample getDefaultInstanceForType() {
       return org.tensorflow.example.SequenceExample.getDefaultInstance();
     }
 
-    @java.lang.Override
     public org.tensorflow.example.SequenceExample build() {
       org.tensorflow.example.SequenceExample result = buildPartial();
       if (!result.isInitialized()) {
@@ -397,7 +360,6 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    @java.lang.Override
     public org.tensorflow.example.SequenceExample buildPartial() {
       org.tensorflow.example.SequenceExample result = new org.tensorflow.example.SequenceExample(this);
       if (contextBuilder_ == null) {
@@ -414,39 +376,32 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    @java.lang.Override
     public Builder clone() {
-      return super.clone();
+      return (Builder) super.clone();
     }
-    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
+        Object value) {
+      return (Builder) super.setField(field, value);
     }
-    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
+      return (Builder) super.clearField(field);
     }
-    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
+      return (Builder) super.clearOneof(oneof);
     }
-    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
+        int index, Object value) {
+      return (Builder) super.setRepeatedField(field, index, value);
     }
-    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
+        Object value) {
+      return (Builder) super.addRepeatedField(field, value);
     }
-    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.tensorflow.example.SequenceExample) {
         return mergeFrom((org.tensorflow.example.SequenceExample)other);
@@ -464,17 +419,14 @@ private static final long serialVersionUID = 0L;
       if (other.hasFeatureLists()) {
         mergeFeatureLists(other.getFeatureLists());
       }
-      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
-    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -493,17 +445,17 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private org.tensorflow.example.Features context_;
+    private org.tensorflow.example.Features context_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.Features, org.tensorflow.example.Features.Builder, org.tensorflow.example.FeaturesOrBuilder> contextBuilder_;
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public boolean hasContext() {
       return contextBuilder_ != null || context_ != null;
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public org.tensorflow.example.Features getContext() {
       if (contextBuilder_ == null) {
@@ -513,7 +465,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public Builder setContext(org.tensorflow.example.Features value) {
       if (contextBuilder_ == null) {
@@ -529,7 +481,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public Builder setContext(
         org.tensorflow.example.Features.Builder builderForValue) {
@@ -543,7 +495,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public Builder mergeContext(org.tensorflow.example.Features value) {
       if (contextBuilder_ == null) {
@@ -561,7 +513,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public Builder clearContext() {
       if (contextBuilder_ == null) {
@@ -575,7 +527,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public org.tensorflow.example.Features.Builder getContextBuilder() {
       
@@ -583,7 +535,7 @@ private static final long serialVersionUID = 0L;
       return getContextFieldBuilder().getBuilder();
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     public org.tensorflow.example.FeaturesOrBuilder getContextOrBuilder() {
       if (contextBuilder_ != null) {
@@ -594,7 +546,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.Features context = 1;</code>
+     * <code>optional .tensorflow.Features context = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.Features, org.tensorflow.example.Features.Builder, org.tensorflow.example.FeaturesOrBuilder> 
@@ -610,17 +562,17 @@ private static final long serialVersionUID = 0L;
       return contextBuilder_;
     }
 
-    private org.tensorflow.example.FeatureLists featureLists_;
+    private org.tensorflow.example.FeatureLists featureLists_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.FeatureLists, org.tensorflow.example.FeatureLists.Builder, org.tensorflow.example.FeatureListsOrBuilder> featureListsBuilder_;
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public boolean hasFeatureLists() {
       return featureListsBuilder_ != null || featureLists_ != null;
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public org.tensorflow.example.FeatureLists getFeatureLists() {
       if (featureListsBuilder_ == null) {
@@ -630,7 +582,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public Builder setFeatureLists(org.tensorflow.example.FeatureLists value) {
       if (featureListsBuilder_ == null) {
@@ -646,7 +598,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public Builder setFeatureLists(
         org.tensorflow.example.FeatureLists.Builder builderForValue) {
@@ -660,7 +612,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public Builder mergeFeatureLists(org.tensorflow.example.FeatureLists value) {
       if (featureListsBuilder_ == null) {
@@ -678,7 +630,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public Builder clearFeatureLists() {
       if (featureListsBuilder_ == null) {
@@ -692,7 +644,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public org.tensorflow.example.FeatureLists.Builder getFeatureListsBuilder() {
       
@@ -700,7 +652,7 @@ private static final long serialVersionUID = 0L;
       return getFeatureListsFieldBuilder().getBuilder();
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     public org.tensorflow.example.FeatureListsOrBuilder getFeatureListsOrBuilder() {
       if (featureListsBuilder_ != null) {
@@ -711,7 +663,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.FeatureLists feature_lists = 2;</code>
+     * <code>optional .tensorflow.FeatureLists feature_lists = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.FeatureLists, org.tensorflow.example.FeatureLists.Builder, org.tensorflow.example.FeatureListsOrBuilder> 
@@ -726,16 +678,14 @@ private static final long serialVersionUID = 0L;
       }
       return featureListsBuilder_;
     }
-    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+      return this;
     }
 
-    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+      return this;
     }
 
 
@@ -754,12 +704,11 @@ private static final long serialVersionUID = 0L;
 
   private static final com.google.protobuf.Parser<SequenceExample>
       PARSER = new com.google.protobuf.AbstractParser<SequenceExample>() {
-    @java.lang.Override
     public SequenceExample parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new SequenceExample(input, extensionRegistry);
+        return new SequenceExample(input, extensionRegistry);
     }
   };
 
@@ -772,7 +721,6 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  @java.lang.Override
   public org.tensorflow.example.SequenceExample getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }

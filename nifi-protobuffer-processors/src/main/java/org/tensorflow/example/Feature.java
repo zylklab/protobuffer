@@ -14,7 +14,6 @@ public  final class Feature extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:tensorflow.Feature)
     FeatureOrBuilder {
-private static final long serialVersionUID = 0L;
   // Use Feature.newBuilder() to construct.
   private Feature(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -23,27 +22,16 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Feature();
-  }
-
-  @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return this.unknownFields;
+    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private Feature(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -52,6 +40,12 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
+          default: {
+            if (!input.skipField(tag)) {
+              done = true;
+            }
+            break;
+          }
           case 10: {
             org.tensorflow.example.BytesList.Builder subBuilder = null;
             if (kindCase_ == 1) {
@@ -94,13 +88,6 @@ private static final long serialVersionUID = 0L;
             kindCase_ = 3;
             break;
           }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -109,7 +96,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -118,7 +104,6 @@ private static final long serialVersionUID = 0L;
     return org.tensorflow.example.FeatureProtos.internal_static_tensorflow_Feature_descriptor;
   }
 
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return org.tensorflow.example.FeatureProtos.internal_static_tensorflow_Feature_fieldAccessorTable
@@ -168,13 +153,7 @@ private static final long serialVersionUID = 0L;
 
   public static final int BYTES_LIST_FIELD_NUMBER = 1;
   /**
-   * <code>.tensorflow.BytesList bytes_list = 1;</code>
-   */
-  public boolean hasBytesList() {
-    return kindCase_ == 1;
-  }
-  /**
-   * <code>.tensorflow.BytesList bytes_list = 1;</code>
+   * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
    */
   public org.tensorflow.example.BytesList getBytesList() {
     if (kindCase_ == 1) {
@@ -183,7 +162,7 @@ private static final long serialVersionUID = 0L;
     return org.tensorflow.example.BytesList.getDefaultInstance();
   }
   /**
-   * <code>.tensorflow.BytesList bytes_list = 1;</code>
+   * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
    */
   public org.tensorflow.example.BytesListOrBuilder getBytesListOrBuilder() {
     if (kindCase_ == 1) {
@@ -194,13 +173,7 @@ private static final long serialVersionUID = 0L;
 
   public static final int FLOAT_LIST_FIELD_NUMBER = 2;
   /**
-   * <code>.tensorflow.FloatList float_list = 2;</code>
-   */
-  public boolean hasFloatList() {
-    return kindCase_ == 2;
-  }
-  /**
-   * <code>.tensorflow.FloatList float_list = 2;</code>
+   * <code>optional .tensorflow.FloatList float_list = 2;</code>
    */
   public org.tensorflow.example.FloatList getFloatList() {
     if (kindCase_ == 2) {
@@ -209,7 +182,7 @@ private static final long serialVersionUID = 0L;
     return org.tensorflow.example.FloatList.getDefaultInstance();
   }
   /**
-   * <code>.tensorflow.FloatList float_list = 2;</code>
+   * <code>optional .tensorflow.FloatList float_list = 2;</code>
    */
   public org.tensorflow.example.FloatListOrBuilder getFloatListOrBuilder() {
     if (kindCase_ == 2) {
@@ -220,13 +193,7 @@ private static final long serialVersionUID = 0L;
 
   public static final int INT64_LIST_FIELD_NUMBER = 3;
   /**
-   * <code>.tensorflow.Int64List int64_list = 3;</code>
-   */
-  public boolean hasInt64List() {
-    return kindCase_ == 3;
-  }
-  /**
-   * <code>.tensorflow.Int64List int64_list = 3;</code>
+   * <code>optional .tensorflow.Int64List int64_list = 3;</code>
    */
   public org.tensorflow.example.Int64List getInt64List() {
     if (kindCase_ == 3) {
@@ -235,7 +202,7 @@ private static final long serialVersionUID = 0L;
     return org.tensorflow.example.Int64List.getDefaultInstance();
   }
   /**
-   * <code>.tensorflow.Int64List int64_list = 3;</code>
+   * <code>optional .tensorflow.Int64List int64_list = 3;</code>
    */
   public org.tensorflow.example.Int64ListOrBuilder getInt64ListOrBuilder() {
     if (kindCase_ == 3) {
@@ -245,7 +212,6 @@ private static final long serialVersionUID = 0L;
   }
 
   private byte memoizedIsInitialized = -1;
-  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -255,7 +221,6 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
-  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (kindCase_ == 1) {
@@ -267,10 +232,8 @@ private static final long serialVersionUID = 0L;
     if (kindCase_ == 3) {
       output.writeMessage(3, (org.tensorflow.example.Int64List) kind_);
     }
-    unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -288,11 +251,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (org.tensorflow.example.Int64List) kind_);
     }
-    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
+  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -303,25 +266,27 @@ private static final long serialVersionUID = 0L;
     }
     org.tensorflow.example.Feature other = (org.tensorflow.example.Feature) obj;
 
-    if (!getKindCase().equals(other.getKindCase())) return false;
+    boolean result = true;
+    result = result && getKindCase().equals(
+        other.getKindCase());
+    if (!result) return false;
     switch (kindCase_) {
       case 1:
-        if (!getBytesList()
-            .equals(other.getBytesList())) return false;
+        result = result && getBytesList()
+            .equals(other.getBytesList());
         break;
       case 2:
-        if (!getFloatList()
-            .equals(other.getFloatList())) return false;
+        result = result && getFloatList()
+            .equals(other.getFloatList());
         break;
       case 3:
-        if (!getInt64List()
-            .equals(other.getInt64List())) return false;
+        result = result && getInt64List()
+            .equals(other.getInt64List());
         break;
       case 0:
       default:
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return result;
   }
 
   @java.lang.Override
@@ -330,7 +295,7 @@ private static final long serialVersionUID = 0L;
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     switch (kindCase_) {
       case 1:
         hash = (37 * hash) + BYTES_LIST_FIELD_NUMBER;
@@ -352,17 +317,6 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static org.tensorflow.example.Feature parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static org.tensorflow.example.Feature parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static org.tensorflow.example.Feature parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -422,7 +376,6 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -430,7 +383,6 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder(org.tensorflow.example.Feature prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -458,7 +410,6 @@ private static final long serialVersionUID = 0L;
       return org.tensorflow.example.FeatureProtos.internal_static_tensorflow_Feature_descriptor;
     }
 
-    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.tensorflow.example.FeatureProtos.internal_static_tensorflow_Feature_fieldAccessorTable
@@ -481,7 +432,6 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
       }
     }
-    @java.lang.Override
     public Builder clear() {
       super.clear();
       kindCase_ = 0;
@@ -489,18 +439,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return org.tensorflow.example.FeatureProtos.internal_static_tensorflow_Feature_descriptor;
     }
 
-    @java.lang.Override
     public org.tensorflow.example.Feature getDefaultInstanceForType() {
       return org.tensorflow.example.Feature.getDefaultInstance();
     }
 
-    @java.lang.Override
     public org.tensorflow.example.Feature build() {
       org.tensorflow.example.Feature result = buildPartial();
       if (!result.isInitialized()) {
@@ -509,7 +456,6 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    @java.lang.Override
     public org.tensorflow.example.Feature buildPartial() {
       org.tensorflow.example.Feature result = new org.tensorflow.example.Feature(this);
       if (kindCase_ == 1) {
@@ -538,39 +484,32 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    @java.lang.Override
     public Builder clone() {
-      return super.clone();
+      return (Builder) super.clone();
     }
-    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
+        Object value) {
+      return (Builder) super.setField(field, value);
     }
-    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
+      return (Builder) super.clearField(field);
     }
-    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
+      return (Builder) super.clearOneof(oneof);
     }
-    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
+        int index, Object value) {
+      return (Builder) super.setRepeatedField(field, index, value);
     }
-    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
+        Object value) {
+      return (Builder) super.addRepeatedField(field, value);
     }
-    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.tensorflow.example.Feature) {
         return mergeFrom((org.tensorflow.example.Feature)other);
@@ -599,17 +538,14 @@ private static final long serialVersionUID = 0L;
           break;
         }
       }
-      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
-    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -646,13 +582,7 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.BytesList, org.tensorflow.example.BytesList.Builder, org.tensorflow.example.BytesListOrBuilder> bytesListBuilder_;
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
-     */
-    public boolean hasBytesList() {
-      return kindCase_ == 1;
-    }
-    /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public org.tensorflow.example.BytesList getBytesList() {
       if (bytesListBuilder_ == null) {
@@ -668,7 +598,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public Builder setBytesList(org.tensorflow.example.BytesList value) {
       if (bytesListBuilder_ == null) {
@@ -684,7 +614,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public Builder setBytesList(
         org.tensorflow.example.BytesList.Builder builderForValue) {
@@ -698,7 +628,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public Builder mergeBytesList(org.tensorflow.example.BytesList value) {
       if (bytesListBuilder_ == null) {
@@ -720,7 +650,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public Builder clearBytesList() {
       if (bytesListBuilder_ == null) {
@@ -739,13 +669,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public org.tensorflow.example.BytesList.Builder getBytesListBuilder() {
       return getBytesListFieldBuilder().getBuilder();
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     public org.tensorflow.example.BytesListOrBuilder getBytesListOrBuilder() {
       if ((kindCase_ == 1) && (bytesListBuilder_ != null)) {
@@ -758,7 +688,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.BytesList bytes_list = 1;</code>
+     * <code>optional .tensorflow.BytesList bytes_list = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.BytesList, org.tensorflow.example.BytesList.Builder, org.tensorflow.example.BytesListOrBuilder> 
@@ -782,13 +712,7 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.FloatList, org.tensorflow.example.FloatList.Builder, org.tensorflow.example.FloatListOrBuilder> floatListBuilder_;
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
-     */
-    public boolean hasFloatList() {
-      return kindCase_ == 2;
-    }
-    /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public org.tensorflow.example.FloatList getFloatList() {
       if (floatListBuilder_ == null) {
@@ -804,7 +728,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public Builder setFloatList(org.tensorflow.example.FloatList value) {
       if (floatListBuilder_ == null) {
@@ -820,7 +744,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public Builder setFloatList(
         org.tensorflow.example.FloatList.Builder builderForValue) {
@@ -834,7 +758,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public Builder mergeFloatList(org.tensorflow.example.FloatList value) {
       if (floatListBuilder_ == null) {
@@ -856,7 +780,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public Builder clearFloatList() {
       if (floatListBuilder_ == null) {
@@ -875,13 +799,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public org.tensorflow.example.FloatList.Builder getFloatListBuilder() {
       return getFloatListFieldBuilder().getBuilder();
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     public org.tensorflow.example.FloatListOrBuilder getFloatListOrBuilder() {
       if ((kindCase_ == 2) && (floatListBuilder_ != null)) {
@@ -894,7 +818,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.FloatList float_list = 2;</code>
+     * <code>optional .tensorflow.FloatList float_list = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.FloatList, org.tensorflow.example.FloatList.Builder, org.tensorflow.example.FloatListOrBuilder> 
@@ -918,13 +842,7 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.Int64List, org.tensorflow.example.Int64List.Builder, org.tensorflow.example.Int64ListOrBuilder> int64ListBuilder_;
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
-     */
-    public boolean hasInt64List() {
-      return kindCase_ == 3;
-    }
-    /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public org.tensorflow.example.Int64List getInt64List() {
       if (int64ListBuilder_ == null) {
@@ -940,7 +858,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public Builder setInt64List(org.tensorflow.example.Int64List value) {
       if (int64ListBuilder_ == null) {
@@ -956,7 +874,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public Builder setInt64List(
         org.tensorflow.example.Int64List.Builder builderForValue) {
@@ -970,7 +888,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public Builder mergeInt64List(org.tensorflow.example.Int64List value) {
       if (int64ListBuilder_ == null) {
@@ -992,7 +910,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public Builder clearInt64List() {
       if (int64ListBuilder_ == null) {
@@ -1011,13 +929,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public org.tensorflow.example.Int64List.Builder getInt64ListBuilder() {
       return getInt64ListFieldBuilder().getBuilder();
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     public org.tensorflow.example.Int64ListOrBuilder getInt64ListOrBuilder() {
       if ((kindCase_ == 3) && (int64ListBuilder_ != null)) {
@@ -1030,7 +948,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.tensorflow.Int64List int64_list = 3;</code>
+     * <code>optional .tensorflow.Int64List int64_list = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         org.tensorflow.example.Int64List, org.tensorflow.example.Int64List.Builder, org.tensorflow.example.Int64ListOrBuilder> 
@@ -1050,16 +968,14 @@ private static final long serialVersionUID = 0L;
       onChanged();;
       return int64ListBuilder_;
     }
-    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+      return this;
     }
 
-    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+      return this;
     }
 
 
@@ -1078,12 +994,11 @@ private static final long serialVersionUID = 0L;
 
   private static final com.google.protobuf.Parser<Feature>
       PARSER = new com.google.protobuf.AbstractParser<Feature>() {
-    @java.lang.Override
     public Feature parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Feature(input, extensionRegistry);
+        return new Feature(input, extensionRegistry);
     }
   };
 
@@ -1096,7 +1011,6 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  @java.lang.Override
   public org.tensorflow.example.Feature getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
